@@ -1,4 +1,4 @@
-{"orderId":"100", "name":"Apple", "health score":99, "calories":300, "servingSize":"1 apple"}
-{"orderId":"100", "name":"Banana", "health score":80, "contains": 200, "servingSize":"1 banana"}
-{"orderId":"232", "name":"Apple", "health score":30, "calories":500, "servingSize":"1 bag"}
-{"orderId":"232", "name":"Banana", "health score":80, "contains": 200, "servingSize":"1 banana"}
+{"orderId":"100", "name":"Apple", "healthScore":99, "calories":300, "servingSize":"1 apple"}
+{"orderId":"100", "name":"Banana", "healthScore":80, "calories": 200, "servingSize":"1 banana"}
+{"orderId":"232", "name":"Apple", "healthScore":30, "calories":500, "servingSize":"1 bag"}
+{"orderId":"232", "name":"Banana", "healthScore":80, "calories": 200, "servingSize":"1 banana"}
