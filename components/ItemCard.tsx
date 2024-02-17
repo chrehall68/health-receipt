@@ -20,7 +20,7 @@ export const ItemCard: React.FC<itemSchema> = props => {
     const fill = props.healthScore === undefined ? -1 : props.healthScore;
     return <Card style={{ margin: medium }}>
         <Card.Content style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <View style={{ flexDirection: "column", paddingRight: 100 }}>
+            <View style={{ flexDirection: "column" }}>
                 <Text>{props.name}</Text>
                 <Text style={{ fontStyle: "italic" }}>Calories: {props.calories}</Text>
             </View>
@@ -31,7 +31,7 @@ export const ItemCard: React.FC<itemSchema> = props => {
                 tintColor={getColor(fill)}
                 backgroundColor="#3d5875">
                 {
-                    (fill) => (
+                    (_) => (
                         <Text style={{ color: "white" }}>
                             {fill}
                         </Text>
