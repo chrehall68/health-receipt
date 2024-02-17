@@ -9,6 +9,7 @@ import { useColorScheme } from '@/components/useColorScheme';
 
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import "react-native-get-random-values";
+import { PaperProvider } from 'react-native-paper';
 
 const convex = new ConvexReactClient(process.env.CONVEX_URL!, {
   unsavedChangesWarning: false,
@@ -56,12 +57,14 @@ function RootLayoutNav() {
 
   return (
     <ConvexProvider client={convex}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        </Stack>
-      </ThemeProvider>
+      <PaperProvider>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          </Stack>
+        </ThemeProvider>
+      </PaperProvider>
     </ConvexProvider>
   );
 }
