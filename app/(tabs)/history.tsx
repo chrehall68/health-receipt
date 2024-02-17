@@ -4,45 +4,29 @@ import { Text, View } from '@/components/Themed';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { Card } from 'react-native-paper';
-import { medium, userId } from '@/constants/values';
-import { Link } from 'expo-router';
+import { medium } from '@/constants/values';
+import { Link, router } from 'expo-router';
+import { Title } from '@/components/StyledText';
+import { useAppSelector } from '../hooks';
 
 interface HistoryItemProps {
   orderId: string
 }
 const HistoryItem: React.FC<HistoryItemProps> = props => {
-  return <Card style={{ margin: medium }}>
+  return <Card style={{ margin: medium }} onPress={() => router.push(`/order/${props.orderId}`)}>
     <Card.Content>
-      <Link href={{ pathname: `/order/${props.orderId}`, }}>
-        <Text>Order #{props.orderId}</Text>
-      </Link>
+      <Text>Order #{props.orderId}</Text>
     </Card.Content>
   </Card>
 }
 
 export default function HistoryScreen() {
+  const userId = useAppSelector(state => state.creds.userId)
   const history = useQuery(api.item.getUserHistory, { userId: userId })
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>History</Text>
+    <View style={{ padding: medium, height: "100%" }}>
+      <Title style={{ height: "30%" }}>History</Title>
       {history?.map((val, idx) => <HistoryItem key={idx} {...val} />)}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});

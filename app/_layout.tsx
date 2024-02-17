@@ -3,13 +3,16 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useColorScheme } from '@/components/useColorScheme';
 
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import "react-native-get-random-values";
 import { PaperProvider } from 'react-native-paper';
+import { Provider } from 'react-redux'
+import Login from './login';
+import { store } from './store';
 
 const convex = new ConvexReactClient(process.env.CONVEX_URL!, {
   unsavedChangesWarning: false,
@@ -57,14 +60,18 @@ function RootLayoutNav() {
 
   return (
     <ConvexProvider client={convex}>
-      <PaperProvider>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-          </Stack>
-        </ThemeProvider>
-      </PaperProvider>
+      <Provider store={store}>
+        <PaperProvider>
+          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+            <Stack initialRouteName='/index'>
+              <Stack.Screen name="main" />
+              <Stack.Screen name="login" />
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+            </Stack>
+          </ThemeProvider>
+        </PaperProvider>
+      </Provider>
     </ConvexProvider>
   );
 }

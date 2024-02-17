@@ -4,6 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { Card, Button } from 'react-native-paper';
 import { Text } from '@/components/Themed';
 import { medium } from '@/constants/values';
+import { Title } from '@/components/StyledText';
 
 export default function ImagePickerExample() {
     const [image, setImage] = useState<string>("");
@@ -41,7 +42,9 @@ export default function ImagePickerExample() {
     };
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center', height: "100%" }}>
+
+            <Title style={{ height: "30%" }}>Scan</Title>
 
             <Card onPress={pickImage} style={{ width: "90%", margin: medium }} >
                 <Card.Content >
