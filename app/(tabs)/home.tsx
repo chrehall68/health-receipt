@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
-import { OrderDisplay } from '@/components/OrderDisplay';
-import { large, lxl, medium, small, userId, xl } from '@/constants/values';
+import { large, lxl, medium, small, xl } from '@/constants/values';
 import { Divider } from 'react-native-paper';
 import { api } from '@/convex/_generated/api';
 import { useQuery } from 'convex/react';
+import { useAppSelector } from '../hooks';
 
 export default function Home() {
+  const userId = useAppSelector(state => state.creds.userId)
   const pastOrders = useQuery(api.item.getUserHistory, { userId: userId })
   const hasHistory = pastOrders !== undefined && pastOrders.length !== 0
   return (
