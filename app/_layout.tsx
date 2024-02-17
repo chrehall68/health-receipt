@@ -63,7 +63,7 @@ function RootLayoutNav() {
       <Provider store={store}>
         <PaperProvider>
           <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-            <Stack initialRouteName='/index'>
+            <Stack initialRouteName='/main'>
               <Stack.Screen name="main" />
               <Stack.Screen name="login" />
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
