@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 import { OrderDisplay } from '@/components/OrderDisplay';
+import { userId } from '@/constants/values';
 
 export default function TabTwoScreen() {
   return (

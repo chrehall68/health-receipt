@@ -1,4 +1,4 @@
-import Tasks from "../Tasks";
+import { View } from "react-native"
 export default function Page() {
-    return <Tasks />;
+    return <View />;
 }
