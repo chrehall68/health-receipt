@@ -11,7 +11,6 @@ import { ConvexProvider, ConvexReactClient } from "convex/react";
 import "react-native-get-random-values";
 import { PaperProvider } from 'react-native-paper';
 import { Provider } from 'react-redux'
-import Login from './login';
 import { store } from './store';
 
 const convex = new ConvexReactClient(process.env.CONVEX_URL!, {
