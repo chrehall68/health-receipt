@@ -12,8 +12,8 @@ export default function Home() {
   const pastOrders = useQuery(api.item.getUserHistory, { userId: userId })
   const hasHistory = pastOrders !== undefined && pastOrders.length !== 0
   return (
-    <View style={{ ...styles.container, padding: xl }}>
-      <Text style={styles.title}>Welcome back, {userId}!</Text>
+    <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center', padding: xl }}>
+      <Text style={{ fontSize: lxl }}>Welcome back, {userId}!</Text>
       <Text>Glad to have you with us.</Text>
       <Divider style={{ height: large }} />
       {hasHistory ?
@@ -26,21 +26,4 @@ export default function Home() {
       }
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+};
