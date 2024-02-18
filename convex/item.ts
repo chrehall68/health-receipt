@@ -2,6 +2,19 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import uuid from 'react-native-uuid';
 
+
+export const getMostRecentPurchase = query({
+    args: { userId: v.string() },
+    handler: async (ctx, args) => {
+        const order_id = await ctx.db.query("orders_").filter(q => q.eq(q.field("userId"), args.userId)).order("desc").take(1);
+        console.log("we took", order_id)
+        if (order_id === undefined || order_id.length === 0) {
+            return [];
+        }
+        return await ctx.db.query("items_").filter(q => q.and(q.eq(q.field("userId"), args.userId), q.eq(q.field("orderId"), order_id[0]?.orderId))).collect();
+    }
+})
+
 export const getPurchaseDate = query({
     args: { orderId: v.string() },
     handler: async (ctx, args) => {
