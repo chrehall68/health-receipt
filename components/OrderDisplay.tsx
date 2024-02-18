@@ -11,7 +11,8 @@ interface OrderDisplayProps {
 export const OrderDisplay: React.FC<OrderDisplayProps> = props => {
     const userId = useAppSelector(state => state.creds.userId);
     const orders = useQuery(api.item.get, { ...props, userId: userId });
+    console.log("orders are", orders)
     return <View style={{ flexDirection: "column", justifyContent: 'center', alignContent: "center" }}>
-        {orders?.map((val, idx) => <ItemCard {...val} key={idx} />)}
+        {orders?.map((val, idx) => <ItemCard product_name={val.name} key={idx} />)}
     </View>
 }
