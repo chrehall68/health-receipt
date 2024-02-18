@@ -16,6 +16,7 @@ import type {
 } from "convex/server";
 import type * as item from "../item.js";
 import type * as openfoodfacts from "../openfoodfacts.js";
+import type * as togetherai from "../togetherai.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -28,6 +29,7 @@ import type * as openfoodfacts from "../openfoodfacts.js";
 declare const fullApi: ApiFromModules<{
   item: typeof item;
   openfoodfacts: typeof openfoodfacts;
+  togetherai: typeof togetherai;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
