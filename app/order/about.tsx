@@ -10,7 +10,6 @@ export default function About() {
     return <View style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ flexGrow: 1, height: "40%" }}>
             <Stack.Screen options={{ title: "About" }} />
-            <Title style={{ height: "20%" }}>About the details</Title>
             <Card style={{ margin: medium }}>
                 <Card.Content>
                     <Text style={{ paddingBottom: medium, fontWeight: "bold" }}>Nutri-Score</Text>

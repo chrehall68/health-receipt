@@ -1,5 +1,5 @@
 import { OrderDisplay } from "@/components/OrderDisplay";
-import { Text, View } from "@/components/Themed";
+import { View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import { medium, small, xl } from "@/constants/values";
 import { api } from "@/convex/_generated/api";
@@ -7,9 +7,19 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useQuery } from "convex/react";
 import { Link, Stack, useLocalSearchParams } from "expo-router";
 import React from "react";
-import { Pressable, ScrollView, useColorScheme } from "react-native";
+import { Pressable, ScrollView, Text, useColorScheme } from "react-native";
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Divider } from "react-native-paper";
 
+const getColor = (i: number) => {
+    if (i > 66) {
+        return "green"
+    }
+    if (i > 33) {
+        return "yellow";
+    }
+    return "red";
+}
 
 export default function Page() {
     const colorscheme = useColorScheme();
@@ -37,7 +47,22 @@ export default function Page() {
             {date !== undefined ?
                 <View>
                     <Text style={{ fontSize: xl }}>Order from {date !== undefined && new Date(date[0]._creationTime).toLocaleDateString()}</Text>
-                    <Text>Here's the stats for your order!</Text>
+                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", padding: medium }}><Text>Overall score: </Text>
+                        <AnimatedCircularProgress
+                            size={50}
+                            width={3}
+                            fill={date[0].score}
+                            tintColor={getColor(date[0].score)}
+                            backgroundColor="#3d5875">
+                            {
+                                (fill) => (
+                                    <Text>
+                                        {fill}
+                                    </Text>
+                                )
+                            }
+                        </AnimatedCircularProgress></View>
+                    <Text>Here's the individual breakdown for your order!</Text>
                 </View>
                 :
                 <Text style={{ fontSize: xl }}>Order details loading...</Text>
