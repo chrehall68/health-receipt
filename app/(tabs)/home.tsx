@@ -1,5 +1,3 @@
-import { StyleSheet } from 'react-native';
-
 import { Text, View } from '@/components/Themed';
 import { large, lxl, medium, small, xl } from '@/constants/values';
 import { Divider } from 'react-native-paper';
@@ -12,7 +10,7 @@ export default function Home() {
   const pastOrders = useQuery(api.item.getUserHistory, { userId: userId })
   const hasHistory = pastOrders !== undefined && pastOrders.length !== 0
   return (
-    <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center', padding: xl }}>
+    <View style={{ flex: 0, alignItems: 'center', padding: xl, height: "100%" }}>
       <Text style={{ fontSize: lxl }}>Welcome back, {userId}!</Text>
       <Text>Glad to have you with us.</Text>
       <Divider style={{ height: large }} />

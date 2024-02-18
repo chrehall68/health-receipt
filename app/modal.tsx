@@ -1,8 +1,8 @@
 
-import { Text, View } from '@/components/Themed';
+import { View } from '@/components/Themed';
 import { Stack, router } from 'expo-router';
-import { Button, Card, Divider } from 'react-native-paper';
-import { large, lxl, medium, xl } from '@/constants/values';
+import { Button } from 'react-native-paper';
+import { medium } from '@/constants/values';
 import { Title } from '@/components/StyledText';
 import { StyledCard } from '@/components/StyledCard';
 import { useAppSelector } from './hooks';
