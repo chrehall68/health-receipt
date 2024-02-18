@@ -4,6 +4,55 @@ import { action } from './_generated/server.js';
 const apiKey = process.env.TOGETHER_API_KEY;
 const baseUrl = 'https://api.together.xyz';
 
+export const getScore = action({
+    args: { foodItems: v.array(v.string()) },
+    handler: async (ctx, args) => {
+        const url = `${baseUrl}/v1/chat/completions`;
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+        };
+
+        const foodItemsStr = args.foodItems.join(', ');
+        const data = {
+            model: "Qwen/Qwen1.5-72B-Chat",
+            max_tokens: 1024,
+            messages: [{
+                role: "user",
+                content: `I want you to rate purchases based on how healthy or uhealthy they are. Return a score out of 100 (with 100 
+being very healthy and 0 being very unhealthy). For reference consider a purchase of (Mixed greens, almond butter, quinoa, wild 
+salmon, cauliflower rice, sweet potatoes, avocados, olive oil, chia seeds, blueberries, sprouted bread, kefir, hummus, almonds, 
+lentils, Brussels sprouts, steel-cut oats, bell peppers, organic eggs, Greek yogurt) will be considered very healthy with a score of 
+100. And an order of (Candy, processed snacks, sugary cereals, frozen desserts, pre-packaged sweets, flavored yogurts, processed 
+meats, high-fat dressings, soda, refined pastries, high-sodium frozen meals, artificially flavored snacks, sweetened beverages) will 
+be considered very unhealthy with a score of 0.
+            Keeping this in mind rate the following order: ${foodItemsStr}
+            Give me a single score out of 100 that would wholistically reflect on the order. Return me a single number, nothing 
+else.`
+            }]
+        };
+
+        const options = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const score = result.choices[0].message.content;
+
+        const match = score.match(/\d+/);
+
+        if (!match) {
+            return -1;
+        }
+
+        const finalScore = match[0];
+        return parseInt(finalScore);
+    }
+});
+
 async function getItems(receiptStr: string[]) {
     const url = `${baseUrl}/v1/chat/completions`;
     const headers = {
@@ -107,7 +156,9 @@ async function getTextFromImage(base64Encoded: string) {
     };
 
     const result = await fetch('https://vision.googleapis.com/v1/images:annotate', options)
-        .then(response => response.json())
+        .then(response => response.json()).catch(reason => console.error(reason));
+
+    console.log(result);
 
     console.log('Text:');
     const text = result.responses[0].fullTextAnnotation ? result.responses[0].fullTextAnnotation.text : '';

@@ -170,7 +170,7 @@ export const ItemCard: React.FC<{ product_name: string }> = props => {
     // loading
     return <Card style={{ margin: medium }}>
         <Card.Content style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <ActivityIndicator size="large" />
+            <ActivityIndicator animating={true} size="large" />
         </Card.Content>
     </Card>
 }

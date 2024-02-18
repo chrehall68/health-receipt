@@ -14,7 +14,7 @@ export default function Settings() {
       <Stack.Screen options={{ title: "Account" }} />
       <Title style={{ height: "30%" }}>Account Settings</Title>
       <StyledCard title='User ID:' text={userId} type='display' />
-      <Button onPress={() => router.navigate("/main")}>Log out</Button>
+      <Button onPress={() => router.navigate("main")}>Log out</Button>
     </View>
   );
 }
