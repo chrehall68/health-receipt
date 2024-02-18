@@ -1,11 +1,9 @@
-import { StyleSheet } from 'react-native';
-
 import { Text, View } from '@/components/Themed';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { Card } from 'react-native-paper';
 import { medium } from '@/constants/values';
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
 import { Title } from '@/components/StyledText';
 import { useAppSelector } from '../hooks';
 

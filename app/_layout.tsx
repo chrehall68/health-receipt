@@ -63,8 +63,8 @@ function RootLayoutNav() {
       <Provider store={store}>
         <PaperProvider>
           <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-            <Stack>
-              <Stack.Screen name="main" />
+            <Stack initialRouteName='index' >
+              <Stack.Screen name="index" options={{ headerBackVisible: false }} />
               <Stack.Screen name="login" />
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="modal" options={{ presentation: 'modal' }} />

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Image, View } from 'react-native';
+import { Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Card, Button } from 'react-native-paper';
-import { Text } from '@/components/Themed';
+import { Text, View } from '@/components/Themed';
 import { medium } from '@/constants/values';
 import { Title } from '@/components/StyledText';
 
